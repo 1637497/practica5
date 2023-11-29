@@ -3,8 +3,8 @@ resource "opennebula_virtual_machine" "example" {
 
   name        = "virtual-machine-${count.index}"
   description = "VM"
-  cpu         = 1
-  vcpu        = 1
+  cpu         = 0.5
+  vcpu        = 2
   memory      = 1024
   permissions = "600"
 
@@ -26,12 +26,16 @@ resource "opennebula_virtual_machine" "example" {
   }
 
   disk {
-    image_id = opennebula_image.example.id
-    size     = 10000
+    image_id = data.ON_image.p5.id
+    size     = 20000
     target   = "vda"
     driver   = "qcow2"
   }
 
+  data "ON_image" "p5"{
+    name = "Ubuntu22.04+openssh-server"
+  }
+  
   on_disk_change = "RECREATE"
 
   nic {
