@@ -1,12 +1,11 @@
 resource "opennebula_virtual_machine" "example" {
   count = 2
 
-  name        = "virtual-machine-0"
+  name        = "virtual-machine-${count.index}"
   description = "VM"
   cpu         = 1
   vcpu        = 1
   memory      = 1024
-  group       = "terraform"
   permissions = "600"
 
   context = {
