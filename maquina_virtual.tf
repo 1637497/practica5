@@ -1,4 +1,4 @@
-resource "opennebula_virtual_machine" "example" {
+resource "opennebula_virtual_machine" "default" {
   count = 2
 
   name        = "virtual-machine-${count.index}"
@@ -8,16 +8,10 @@ resource "opennebula_virtual_machine" "example" {
   memory      = 1024
   permissions = "600"
 
-  context = {
-    NETWORK      = "YES"
-    HOSTNAME     = "$NAME"
-    START_SCRIPT = "yum upgrade"
-  }
-
   graphics {
     type   = "VNC"
     listen = "0.0.0.0"
-    keymap = "fr"
+    keymap = "es"
   }
 
   os {
@@ -26,39 +20,34 @@ resource "opennebula_virtual_machine" "example" {
   }
 
   disk {
-    image_id = data.ON_image.p5.id
+    image_id = data.opennebula_image.p5.id
     size     = 20000
     target   = "vda"
     driver   = "qcow2"
   }
 
-  data "ON_image" "p5"{
-    name = "Ubuntu22.04+openssh-server"
-  }
-  
-  on_disk_change = "RECREATE"
-
   nic {
     model           = "virtio"
-    network_id      = var.vnetid
-    security_groups = [opennebula_security_group.example.id]
+    network_id      = data.opennebula_virtual_network.net.id
+    security_groups = [data.opennebula_security_group.sec.id]
   }
 
-  vmgroup {
-    vmgroup_id = 42
-    role       = "vmgroup-role"
-  }
+  template_id = data.opennebula_template.temp.id
+  
+}
 
-  sched_requirements = "FREE_CPU > 60"
+data "opennebula_image" "p5"{
+  name = "Ubuntu22.04+openssh-server"
+}
 
-  tags = {
-    environment = "example"
-  }
+data "opennebula_virtual_network" "net"{
+  name = "Internet"
+}
+  
+data "opennebula_security_group" "sec"{
+  name = "default"
+}  
 
-  template_section {
-   name = "example"
-   elements = {
-      key1 = "value1"
-   }
-  }
+data "opennebula_template" "temp"{
+  name = "Ubu22.04v1.4-GIxPD"
 }
