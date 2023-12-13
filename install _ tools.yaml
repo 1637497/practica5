@@ -14,5 +14,9 @@
       become: true
 
   - name: Instal·lar docker
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+      
     
   
