@@ -6,6 +6,13 @@
   tasks:
   - name: Instal·lar dependències
     ansible.builtin.apt:
-      name: httpd
-      state: latest
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl 
+      - software-properties-common
+      become: true
+
+  - name: Instal·lar docker
+    
   
