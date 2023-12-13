@@ -10,5 +10,5 @@ terraform {
 provider "opennebula" {
   endpoint = "http://nebulacaos.uab.cat:2633/RPC2"
   username = "gixpd-10"
-  password = "5KEqqei6kzeu"
+  password = "*********"
 }
