@@ -1,0 +1,49 @@
+- name: Update web servers
+  hosts: webservers
+  become: true
+  gather_facts: true
+
+  tasks:
+  - name: Instal·lar dependències
+    ansible.builtin.apt:
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl 
+      - software-properties-common
+      become: true
+
+  - name: Instal·lar docker
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+      
+  - name: Add an Apt signing key, uses whichever key is at the URL
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu stable
+      state: present    
+      
+  - name: Update repositories cache and install apt
+    ansible.builtin.apt:
+      name: apt
+      update_cache: yes
+
+  - name: Install docker
+    ansible.builtin.apt:
+      name: docker
+      state: present
+      
+    - name: Instal·lar kubernetes
+    ansible.builtin.apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+
+    - name: Add an Apt signing key, uses whichever key is at the URL
+      ansible.builtin.apt_key:
+        url: https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+  
+    - name: Install kubectl
+      ansible.builtin.apt:
+        name: kubectl
+        state: present
