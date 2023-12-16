@@ -33,22 +33,22 @@
       name: docker
       state: present
       
-    - name: Instal·lar kubernetes
+  - name: Instal·lar kubernetes
     ansible.builtin.apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
       state: present
 
-    - name: Add an Apt signing key, uses whichever key is at the URL
-      ansible.builtin.apt_key:
-        url: https://apt.kubernetes.io/ kubernetes-xenial main
-        state: present
+  - name: Add an Apt signing key, uses whichever key is at the URL
+    ansible.builtin.apt_key:
+      url: https://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
   
-    - name: Install kubectl
-      ansible.builtin.apt:
-        name: kubectl
-        state: present
+  - name: Install kubectl
+    ansible.builtin.apt:
+      name: kubectl
+      state: present
   
-    - name: Install minikube
-      ansible.builtin.shell:
-        cmd: curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-        chdir: /usr/local/bin/
+  - name: Install minikube
+    ansible.builtin.shell:
+      cmd: curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+      chdir: /usr/local/bin/
