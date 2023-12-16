@@ -8,3 +8,14 @@ ansible_sudo_pass=NebulaCaos
 [all]
 10.10.8.122
 10.10.8.140
+
+all:
+  vars:
+    ansible_connection: ssh
+    ansible_user: adminp
+    ansible_ssh_pass: NebulaCaos
+    ansible_sudo_pass: NebulaCaos
+
+  hosts:
+    10.10.11.182
+    10.10.11.219
