@@ -1,10 +1,15 @@
-adminp@ubu22:~/prac5$ ansible-playbook install_tools.yaml
-[WARNING]: No inventory was parsed, only implicit localhost is available
-[WARNING]: provided hosts list is empty, only localhost is available. Note that
-the implicit localhost does not match 'all'
+adminp@ubu22:~/prac5$ ansible-playbook -i hosts install_tools.yaml
 
 PLAY [Update web servers] ******************************************************
-skipping: no hosts matched
+
+TASK [Gathering Facts] *********************************************************
+fatal: [10.10.8.122]: FAILED! => {"msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."}
+ok: [10.10.8.140]
+
+TASK [Instal·lar dependències] *************************************************
+fatal: [10.10.8.140]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.apt) module: become. Supported parameters include: allow_change_held_packages, allow_downgrade, allow_unauthenticated, autoclean, autoremove, cache_valid_time, clean, deb, default_release, dpkg_options, fail_on_autoremove, force, force_apt_get, install_recommends, lock_timeout, only_upgrade, package, policy_rc_d, purge, state, update_cache, update_cache_retries, update_cache_retry_max_delay, upgrade (allow-downgrade, allow-downgrades, allow-unauthenticated, allow_downgrades, default-release, install-recommends, name, pkg, update-cache)."}
 
 PLAY RECAP *********************************************************************
+10.10.8.122                : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+10.10.8.140                : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 
