@@ -6,4 +6,5 @@ ansible_ssh_pass=NebulaCaos
 ansible_sudo_pass=NebulaCaos
 
 [all]
-10.10.10.112
+10.10.8.122
+10.10.8.140
