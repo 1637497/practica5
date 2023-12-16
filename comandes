@@ -10,4 +10,4 @@ ssh-keyscan 10.10.8.122 > /home/adminp/.ssh/known_hosts
 ssh-keyscan 10.10.8.140 > /home/adminp/.ssh/known_hosts
 
 #ANSIBLE  
-ansible-playbook intall_tools.yaml
+ansible-playbook install_tools.yaml
