@@ -1,3 +1,4 @@
+
 adminp@ubu22:~/prac5$ ansible-playbook -i hosts install_tools.yaml
 
 PLAY [Update web servers] ******************************************************
@@ -12,4 +13,3 @@ fatal: [10.10.8.140]: FAILED! => {"changed": false, "msg": "Unsupported paramete
 PLAY RECAP *********************************************************************
 10.10.8.122                : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 10.10.8.140                : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
-
