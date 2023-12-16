@@ -1,0 +1,6 @@
+#COMPROVAR CONECTIVITAT
+ping 10.10.8.122 
+ping 10.10.8.140 
+
+ssh-keyscan 10.10.8.122 > /home/adminp/.ssh/known_hosts
+ssh-keyscan 10.10.8.140 > /home/adminp/.ssh/known_hosts
